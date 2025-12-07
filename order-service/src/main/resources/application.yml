@@ -1,0 +1,23 @@
+server:
+  port: 9091
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/order_tracking_system
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    database-platform: org.hibernate.dialect.MySQLDialect
+    username: root
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+  kafka:
+    bootstrap-servers: localhost:9094
+    consumer:
+      group-id: order-service-group
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+logging:
+  level:
+    root: INFO
